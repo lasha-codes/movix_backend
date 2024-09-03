@@ -5,3 +5,8 @@ export type registerBody = {
   gender: string
   password: string
 }
+
+export type loginBody = {
+  usernameOrEmail: string
+  password: string
+}
