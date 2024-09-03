@@ -102,6 +102,7 @@ export const validateLogin = async (body: loginBody) => {
       if (!passwordMatches) {
         return { errorMessage: 'პაროლი არასწორია' }
       }
+      return { errorMessage: null }
     } else {
       const userWithUsername = await db.user.findUnique({
         where: {
@@ -121,6 +122,8 @@ export const validateLogin = async (body: loginBody) => {
       if (!passwordMatches) {
         return { errorMessage: 'პაროლი არასწორია' }
       }
+
+      return { errorMessage: null }
     }
   } catch (err) {
     console.log('err', err)

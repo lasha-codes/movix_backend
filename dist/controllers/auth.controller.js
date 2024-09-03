@@ -1,4 +1,4 @@
-import { registerService } from '../services/auth.services.js';
+import { loginService, registerService } from '../services/auth.services.js';
 import { validateRegister, validateLogin, } from '../validations/auth.validation.js';
 export const register = async (req, res) => {
     const { errorMessage } = await validateRegister(req.body);
@@ -12,5 +12,6 @@ export const login = async (req, res) => {
     if (errorMessage) {
         return res.status(400).json({ error: errorMessage });
     }
+    await loginService(req.body, res);
 };
 //# sourceMappingURL=auth.controller.js.map

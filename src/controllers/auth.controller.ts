@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { registerService } from '../services/auth.services.js'
+import { loginService, registerService } from '../services/auth.services.js'
 import {
   validateRegister,
   validateLogin,
@@ -21,4 +21,6 @@ export const login = async (req: Request, res: Response) => {
   if (errorMessage) {
     return res.status(400).json({ error: errorMessage })
   }
+
+  await loginService(req.body, res)
 }
