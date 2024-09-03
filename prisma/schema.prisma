@@ -18,7 +18,7 @@ model User {
   username             String  @unique
   email                String  @unique
   gender               String
-  date                 String
+  date                 Int
   password             String
   iconNumber           Int
   displayMarkedMovies  Boolean @default(false)
