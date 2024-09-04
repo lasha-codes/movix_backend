@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
@@ -23,4 +23,26 @@ model User {
   iconNumber           Int
   displayMarkedMovies  Boolean @default(false)
   displayWatchedMovies Boolean @default(false)
+}
+
+model Movies {
+  id          String   @id @default(uuid())
+  title       String
+  thumbnail   String
+  trailer     String
+  imdb        Int
+  year        Int
+  country     String[]
+  genres      String[]
+  actors      String[]
+  description String
+  director    String
+  studio      String
+  videos      Json[]
+}
+
+model Actors {
+  id    String @id @default(cuid())
+  name  String
+  image String
 }
