@@ -34,7 +34,7 @@ model Movies {
   year        Int
   country     String[]
   genres      String[]
-  actors      String[]
+  actors      Json[]
   description String
   director    String
   studio      String

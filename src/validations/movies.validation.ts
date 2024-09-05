@@ -1,14 +1,16 @@
 import { Movies } from '@prisma/client'
 import Joi from 'joi'
+import CustomError from '../utils/customError.js'
+import { Response } from 'express'
 
-export const validateMoviesSchema = (body: Movies) => {
+export const validateMoviesSchema = (body: Movies, response: Response) => {
   try {
     const moviesSchema = Joi.object({
       title: Joi.string().required().min(1).max(150),
       thumbnail: Joi.string().required(),
       trailer: Joi.string().required(),
-      imdb: Joi.number().required().max(4),
-      year: Joi.number().required().min(4),
+      imdb: Joi.number().required(),
+      year: Joi.number().required().min(1550),
       country: Joi.array().required().min(1),
       genres: Joi.array().required().min(1),
       actors: Joi.array().required().min(1),
@@ -22,6 +24,9 @@ export const validateMoviesSchema = (body: Movies) => {
 
     return { error, value }
   } catch (err) {
-    console.log('err', err)
+    const customError = new CustomError(null, 'schema validation error', 400)
+    response
+      .status(customError.statusCode)
+      .json({ message: customError.clientMessage })
   }
 }
