@@ -18,6 +18,9 @@ export const uploadMovieService = async (body: Movies, response: Response) => {
       director,
       studio,
       videos,
+      releaseDate,
+      rating,
+      duration,
     } = body
 
     const createdMovie = await db.movies.create({
@@ -34,6 +37,9 @@ export const uploadMovieService = async (body: Movies, response: Response) => {
         director,
         studio,
         videos,
+        releaseDate,
+        rating,
+        duration,
       },
     })
 

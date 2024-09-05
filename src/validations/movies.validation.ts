@@ -18,6 +18,9 @@ export const validateMoviesSchema = (body: Movies, response: Response) => {
       director: Joi.string().min(2).max(150),
       studio: Joi.string().min(2).max(150),
       videos: Joi.array().min(1).max(10),
+      releaseDate: Joi.string().required(),
+      rating: Joi.string(),
+      duration: Joi.number(),
     })
 
     const { error, value } = moviesSchema.validate(body)

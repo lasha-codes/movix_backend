@@ -2,7 +2,7 @@ import CustomError from '../utils/customError.js';
 import db from '../database/db.js';
 export const uploadMovieService = async (body, response) => {
     try {
-        const { title, thumbnail, trailer, imdb, year, country, genres, actors, description, director, studio, videos, } = body;
+        const { title, thumbnail, trailer, imdb, year, country, genres, actors, description, director, studio, videos, releaseDate, rating, duration, } = body;
         const createdMovie = await db.movies.create({
             data: {
                 title,
@@ -17,6 +17,9 @@ export const uploadMovieService = async (body, response) => {
                 director,
                 studio,
                 videos,
+                releaseDate,
+                rating,
+                duration,
             },
         });
         return response.status(201).json({ createdMovie });

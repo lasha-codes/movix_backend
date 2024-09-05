@@ -30,7 +30,7 @@ model Movies {
   title       String
   thumbnail   String
   trailer     String
-  imdb        Int
+  imdb        Float    @default(0.0)
   year        Int
   country     String[]
   genres      String[]
@@ -38,6 +38,11 @@ model Movies {
   description String
   director    String
   studio      String
+  duration    Int      @default(0)
+  rating      String   @default("NR")
+  releaseDate String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   videos      Json[]
 }
 
