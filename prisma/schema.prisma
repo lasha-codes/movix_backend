@@ -34,16 +34,37 @@ model Movies {
   year        Int
   country     String[]
   genres      String[]
-  actors      Json[]
+  actors      String[]
   description String
   director    String
   studio      String
   duration    Int      @default(0)
   rating      String   @default("NR")
+  videos      Json[]
   releaseDate String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  videos      Json[]
+}
+
+model Series {
+  id          String   @id @default(uuid())
+  title       String
+  trailer     String
+  thumbnail   String
+  imdb        Float    @default(0.0)
+  year        Int
+  country     String[]
+  genres      String[]
+  actors      Json[]
+  duration    Int      @default(0)
+  description String
+  studio      String
+  director    String
+  rating      String   @default("NR")
+  releaseDate String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  series      Json[]
 }
 
 model Actors {

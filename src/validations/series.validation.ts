@@ -1,11 +1,11 @@
-import { Movies } from '@prisma/client'
 import Joi from 'joi'
+import { Series } from '@prisma/client'
 import CustomError from '../utils/customError.js'
 import { Response } from 'express'
 
-export const validateMoviesSchema = (body: Movies, response: Response) => {
+export const validateSeriesSchema = (body: Series, response: Response) => {
   try {
-    const moviesSchema = Joi.object({
+    const seriesSchema = Joi.object({
       title: Joi.string().required().min(1).max(150),
       thumbnail: Joi.string().required(),
       trailer: Joi.string().required(),
@@ -15,15 +15,15 @@ export const validateMoviesSchema = (body: Movies, response: Response) => {
       genres: Joi.array().required().min(1),
       actors: Joi.array().required().min(1),
       description: Joi.string().min(50).max(1000),
-      director: Joi.string().min(2).max(150).required(),
-      studio: Joi.string().min(2).max(150).required(),
-      videos: Joi.array().min(1).max(10).required(),
+      director: Joi.string().min(2).max(150),
+      studio: Joi.string().min(2).max(150),
+      series: Joi.array().min(1).required(),
       releaseDate: Joi.string().required(),
       rating: Joi.string(),
       duration: Joi.number(),
     })
 
-    const { error, value } = moviesSchema.validate(body)
+    const { error, value } = seriesSchema.validate(body)
 
     return { error, value }
   } catch (err) {
