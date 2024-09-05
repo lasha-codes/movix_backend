@@ -1,4 +1,4 @@
-import { NextFunction, Response } from 'express'
+import { NextFunction, Response, Request } from 'express'
 import CustomError from '../utils/customError.js'
 import { validateSeriesSchema } from '../validations/series.validation.js'
 
