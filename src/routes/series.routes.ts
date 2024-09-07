@@ -7,3 +7,5 @@ const router = Router()
 router.post('/upload', seriesMiddleware, seriesController)
 
 export default router
+
+console.log('football match')
