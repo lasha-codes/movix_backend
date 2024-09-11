@@ -25,7 +25,21 @@ export const uploadMovieService = async (body, response) => {
         return response.status(201).json({ createdMovie });
     }
     catch (err) {
-        console.log(body);
+        const customError = new CustomError(null, err.message, 500);
+        response.status(500).json({ error: customError });
+    }
+};
+export const genresService = async (body, response) => {
+    try {
+        const { genre } = body;
+        const createdGenre = await db.genres.create({
+            data: {
+                genre,
+            },
+        });
+        return response.status(201).json({ createdGenre });
+    }
+    catch (err) {
         const customError = new CustomError(null, err.message, 500);
         response.status(500).json({ error: customError });
     }

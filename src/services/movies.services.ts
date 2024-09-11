@@ -1,4 +1,4 @@
-import { Movies } from '@prisma/client'
+import { Genres, Movies } from '@prisma/client'
 import { Response } from 'express'
 import CustomError from '../utils/customError.js'
 import db from '../database/db.js'
@@ -45,7 +45,23 @@ export const uploadMovieService = async (body: Movies, response: Response) => {
 
     return response.status(201).json({ createdMovie })
   } catch (err) {
-    console.log(body)
+    const customError = new CustomError(null, err.message, 500)
+    response.status(500).json({ error: customError })
+  }
+}
+
+export const genresService = async (body: Genres, response: Response) => {
+  try {
+    const { genre } = body
+
+    const createdGenre = await db.genres.create({
+      data: {
+        genre,
+      },
+    })
+
+    return response.status(201).json({ createdGenre })
+  } catch (err) {
     const customError = new CustomError(null, err.message, 500)
     response.status(500).json({ error: customError })
   }

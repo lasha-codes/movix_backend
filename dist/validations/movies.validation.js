@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import CustomError from '../utils/customError.js';
+import db from '../database/db.js';
 export const validateMoviesSchema = (body, response) => {
     try {
         const moviesSchema = Joi.object({
@@ -32,7 +33,15 @@ export const validateMoviesSchema = (body, response) => {
 export const validateGenrePayload = async (body, response) => {
     try {
         if (!body.genre) {
+            return { error: 'genre is required', status: 400 };
         }
+        const genreExists = await db.genres.findUnique({
+            where: { genre: body.genre },
+        });
+        if (genreExists) {
+            return { error: 'genre already exists', status: 403 };
+        }
+        return { error: null, status: null };
     }
     catch (err) {
         const customError = new CustomError(null, 'schema validation error', 400);
