@@ -13,7 +13,7 @@ export const actorsService = async (body, response) => {
         response.status(201).json({ createdActor });
     }
     catch (err) {
-        const customError = new CustomError(null, err, 500);
+        const customError = new CustomError(null, 'სერვერის პრობლემა', 500);
         response
             .status(customError.statusCode)
             .json({ message: customError.clientMessage });

@@ -29,4 +29,16 @@ export const validateMoviesSchema = (body, response) => {
             .json({ message: customError.clientMessage });
     }
 };
+export const validateGenrePayload = async (body, response) => {
+    try {
+        if (!body.genre) {
+        }
+    }
+    catch (err) {
+        const customError = new CustomError(null, 'schema validation error', 400);
+        response
+            .status(customError.statusCode)
+            .json({ message: customError.clientMessage });
+    }
+};
 //# sourceMappingURL=movies.validation.js.map

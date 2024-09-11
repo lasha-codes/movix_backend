@@ -73,3 +73,8 @@ model Actors {
   image String
   date  DateTime
 }
+
+model Genres {
+  id    Int    @id @default(autoincrement())
+  genre String @unique
+}
