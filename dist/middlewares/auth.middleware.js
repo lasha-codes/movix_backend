@@ -1,7 +1,7 @@
 import { validateRegisterSchema, validateLoginSchema, } from '../validations/auth.validation.js';
 import CustomError from '../utils/customError.js';
-export const registerMiddleware = async (req, res, next) => {
-    const { error } = await validateRegisterSchema(req.body);
+export const registerMiddleware = (req, res, next) => {
+    const { error } = validateRegisterSchema(req.body);
     let destructuredError = null;
     if (error) {
         destructuredError = error.details[0].message;
@@ -13,7 +13,7 @@ export const registerMiddleware = async (req, res, next) => {
     }
 };
 export const loginMiddleware = async (req, res, next) => {
-    const { error } = await validateLoginSchema(req.body);
+    const { error } = validateLoginSchema(req.body);
     let destructuredError = null;
     if (error) {
         destructuredError = error.details[0].message;

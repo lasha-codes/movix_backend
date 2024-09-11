@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import db from '../database/db.js';
 import bcrypt from 'bcrypt';
-export const validateRegisterSchema = async (body) => {
+export const validateRegisterSchema = (body) => {
     const registerSchema = Joi.object({
         email: Joi.string().email().required(),
         username: Joi.string().min(3).max(20).required(),
@@ -17,7 +17,7 @@ export const validateRegisterSchema = async (body) => {
         console.log('err', err);
     }
 };
-export const validateLoginSchema = async (body) => {
+export const validateLoginSchema = (body) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let isEmail = false;
     if (body.usernameOrEmail) {

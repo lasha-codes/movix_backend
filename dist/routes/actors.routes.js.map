@@ -1,0 +1,1 @@
+{"version":3,"file":"actors.routes.js","sourceRoot":"","sources":["../../src/routes/actors.routes.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,SAAS,CAAA;AAChC,OAAO,EAAE,gBAAgB,EAAE,MAAM,qCAAqC,CAAA;AACtE,OAAO,EAAE,gBAAgB,EAAE,MAAM,qCAAqC,CAAA;AAEtE,MAAM,MAAM,GAAG,MAAM,EAAE,CAAA;AAEvB,MAAM,CAAC,IAAI,CAAC,MAAM,EAAE,gBAAgB,EAAE,gBAAgB,CAAC,CAAA;AAEvD,eAAe,MAAM,CAAA"}

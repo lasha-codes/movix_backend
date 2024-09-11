@@ -1,7 +1,7 @@
+import { validateActorsSchema } from '../validations/actors.validation.js';
 import CustomError from '../utils/customError.js';
-import { validateMoviesSchema } from '../validations/movies.validation.js';
-export const uploadMoviesMiddleware = (req, res, next) => {
-    const { error } = validateMoviesSchema(req.body, res);
+export const actorsMiddleware = (req, res, next) => {
+    const { error } = validateActorsSchema(req.body, res);
     let destructuredError = null;
     if (error) {
         destructuredError = error.details[0].message;
@@ -12,4 +12,4 @@ export const uploadMoviesMiddleware = (req, res, next) => {
         next();
     }
 };
-//# sourceMappingURL=movies.middleware.js.map
+//# sourceMappingURL=actors.middleware.js.map

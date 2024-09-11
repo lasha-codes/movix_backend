@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import authRoutes from './routes/auth.routes.js'
 import movieRoutes from './routes/movies.routes.js'
 import seriesRoutes from './routes/series.routes.js'
+import actorRoutes from './routes/actors.routes.js'
 
 const app = express()
 dotenv.config()
@@ -16,6 +17,7 @@ app.use(cookieParser())
 app.use('/auth', authRoutes)
 app.use('/movies', movieRoutes)
 app.use('/series', seriesRoutes)
+app.use('/actors', actorRoutes)
 
 const PORT = process.env.PORT || 3000
 
