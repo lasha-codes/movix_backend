@@ -1,13 +1,13 @@
-import { NextFunction, Response, Request } from 'express'
+import { NextFunction, Request, Response } from 'express'
+import { validateActorsSchema } from '../validations/actors.validation.js'
 import CustomError from '../utils/customError.js'
-import { validateMoviesSchema } from '../validations/movies.validation.js'
 
-export const uploadMoviesMiddleware = (
+export const actorsMiddleware = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { error } = validateMoviesSchema(req.body, res)
+  const { error } = validateActorsSchema(req.body, res)
   let destructuredError: null | string = null
   if (error) {
     destructuredError = error.details[0].message

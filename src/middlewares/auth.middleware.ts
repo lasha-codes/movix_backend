@@ -5,12 +5,12 @@ import {
 } from '../validations/auth.validation.js'
 import CustomError from '../utils/customError.js'
 
-export const registerMiddleware = async (
+export const registerMiddleware = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { error } = await validateRegisterSchema(req.body)
+  const { error } = validateRegisterSchema(req.body)
   let destructuredError: null | string = null
   if (error) {
     destructuredError = error.details[0].message
@@ -27,7 +27,7 @@ export const loginMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { error } = await validateLoginSchema(req.body)
+  const { error } = validateLoginSchema(req.body)
   let destructuredError: null | string = null
   if (error) {
     destructuredError = error.details[0].message

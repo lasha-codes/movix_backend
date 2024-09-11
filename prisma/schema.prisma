@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgres"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -68,7 +68,8 @@ model Series {
 }
 
 model Actors {
-  id    String @id @default(cuid())
+  id    String   @id @default(cuid())
   name  String
   image String
+  date  DateTime
 }

@@ -3,7 +3,7 @@ import { registerBody, loginBody } from '../types/globalTypes.js'
 import db from '../database/db.js'
 import bcrypt from 'bcrypt'
 
-export const validateRegisterSchema = async (body: registerBody) => {
+export const validateRegisterSchema = (body: registerBody) => {
   const registerSchema = Joi.object({
     email: Joi.string().email().required(),
     username: Joi.string().min(3).max(20).required(),
@@ -21,7 +21,7 @@ export const validateRegisterSchema = async (body: registerBody) => {
   }
 }
 
-export const validateLoginSchema = async (body: loginBody) => {
+export const validateLoginSchema = (body: loginBody) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   let isEmail: boolean = false
   if (body.usernameOrEmail) {
