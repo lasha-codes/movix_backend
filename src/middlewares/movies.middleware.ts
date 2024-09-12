@@ -2,6 +2,7 @@ import { NextFunction, Response, Request } from 'express'
 import CustomError from '../utils/customError.js'
 import {
   validateGenrePayload,
+  validateGenreUploadPayload,
   validateMoviesSchema,
 } from '../validations/movies.validation.js'
 
@@ -27,6 +28,19 @@ export const genresMiddleware = async (
   next: NextFunction
 ) => {
   const { error, status } = await validateGenrePayload(req.body, res)
+  if (error) {
+    res.status(status).json({ error: error })
+  } else {
+    next()
+  }
+}
+
+export const genresUpdateMiddleware = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { error, status } = await validateGenreUploadPayload(req.body, res)
   if (error) {
     res.status(status).json({ error: error })
   } else {

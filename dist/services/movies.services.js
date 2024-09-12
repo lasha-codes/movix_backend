@@ -40,7 +40,25 @@ export const genresService = async (body, response) => {
         return response.status(201).json({ createdGenre });
     }
     catch (err) {
-        const customError = new CustomError(null, err.message, 500);
+        const customError = new CustomError(null, 'something went wrong', 500);
+        response.status(500).json({ error: customError });
+    }
+};
+export const genreUpdateService = async (body, response) => {
+    try {
+        const { genre, id } = body;
+        const updatedGenre = await db.genres.update({
+            where: {
+                id,
+            },
+            data: {
+                genre: genre,
+            },
+        });
+        return response.status(200).json({ updatedGenre });
+    }
+    catch (err) {
+        const customError = new CustomError(null, 'something went wrong', 500);
         response.status(500).json({ error: customError });
     }
 };

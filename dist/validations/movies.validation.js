@@ -50,4 +50,33 @@ export const validateGenrePayload = async (body, response) => {
             .json({ message: customError.clientMessage });
     }
 };
+export const validateGenreUploadPayload = async (body, response) => {
+    try {
+        if (!body.genre) {
+            return { error: 'genre is required', status: 400 };
+        }
+        if (body.id === undefined || body.id === null) {
+            return { error: 'id is required', status: 400 };
+        }
+        const genreExists = await db.genres.findUnique({
+            where: { genre: body.genre },
+        });
+        if (genreExists) {
+            return { error: 'genre already exists', status: 403 };
+        }
+        const genreNotFound = await db.genres.findUnique({
+            where: { id: body.id },
+        });
+        if (!genreNotFound) {
+            return { error: 'genre with the provided id does not exist', status: 400 };
+        }
+        return { error: null, status: null };
+    }
+    catch (err) {
+        const customError = new CustomError(null, 'schema validation error', 400);
+        response
+            .status(customError.statusCode)
+            .json({ message: customError.clientMessage });
+    }
+};
 //# sourceMappingURL=movies.validation.js.map
